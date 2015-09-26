@@ -4,4 +4,8 @@ Tanks repository contains the client for the Tanks game for the Programming Chal
 
 URL to our Website containing information about the project: https://n2ltanks.wordpress.com/
 
+Team members:
+	K.M.Sugathadasa
+	S.W.Ediriweera
+
 
