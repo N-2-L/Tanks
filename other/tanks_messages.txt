@@ -1,0 +1,46 @@
+//join button in the client interface
+JOIN#
+
+//tanks server replies
+Join accept message
+PLAYERS_FULL#  
+ALREADY_ADDED#
+GAME_ALREADY_STARTED#
+
+//Join accept message
+S:P<num>: < player location  x>,< player location  y>:<Direction>#
+S:P1: 1,1:0#
+
+//map details bricks,stone,water
+I:P<num>: < x>,<y>;< x>,<y>;< x>,<y>…..< x>,<y>: < x>,<y>;< x>,<y>;< x>,<y>…..< x>,<y>: < x>,<y>;< x>,<y>;< x>,<y>…..< x>,<y>#
+
+//moving and direction changing and shooting
+UP#
+DOWN#
+RIGHT#
+LEFT#
+SHOOT#
+
+//If the request of the client cannot be honoured
+OBSTACLE# 
+CELL_OCCUPIED#
+DEAD#
+TOO_QUICK#
+INVALID_CELL#
+GAME_HAS_FINISHED#
+GAME_NOT_STARTED_YET#
+NOT_A_VALID_CONTESTANT#
+
+//each second broadcast update internal variables about the clients.
+G:P1;< player location  x>,< player location  y>;<Direction>;< whether shot>;<health>;< coins>;< points>: …. P5;< player location  x>,< player location  y>;<Direction>;< whether shot>;<health>;< coins>;< points>: < x>,<y>,<damage-level>;< x>,<y>,<damage-level>;< x>,<y>,<damage-level>;< x>,<y>,<damage-level>…..< x>,<y>,<damage-level># 
+//0 (no damage) , 1 (25% damage),  2 (50% damage), 3 (75% Damage), 4 (100% Damage).
+
+//signal the appearing event of a pile of coins.
+??when a player is dead and leave a coin pile will it issue the same signal??
+C:<x>,<y>:<LT>:<Val>#
+
+//signal the appearing event of a Life Pack.
+L:<x>,<y>:<LT>#
+
+//game end 
+GAME_FINISHED# 
