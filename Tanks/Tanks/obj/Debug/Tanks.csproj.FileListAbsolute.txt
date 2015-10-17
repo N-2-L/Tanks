@@ -1,1 +1,6 @@
 C:\Users\KeetMalin\Documents\GitHub\Programming Challenge 2\Tanks\Tanks\Tanks\bin\Debug\Tanks.exe.config
+C:\Users\KeetMalin\Documents\GitHub\Programming Challenge 2\Tanks\Tanks\Tanks\bin\Debug\Tanks.exe
+C:\Users\KeetMalin\Documents\GitHub\Programming Challenge 2\Tanks\Tanks\Tanks\bin\Debug\Tanks.pdb
+C:\Users\KeetMalin\Documents\GitHub\Programming Challenge 2\Tanks\Tanks\Tanks\obj\Debug\Tanks.exe
+C:\Users\KeetMalin\Documents\GitHub\Programming Challenge 2\Tanks\Tanks\Tanks\obj\Debug\Tanks.pdb
+C:\Users\KeetMalin\Documents\GitHub\Programming Challenge 2\Tanks\Tanks\Tanks\obj\Debug\Tanks.csprojResolveAssemblyReference.cache
