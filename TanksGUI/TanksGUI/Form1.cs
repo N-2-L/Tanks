@@ -17,6 +17,19 @@ namespace TanksGUI
             InitializeComponent();
         }
 
+<<<<<<< HEAD:TanksGUI/TanksGUI/Form1.cs
+=======
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void TanksUI_Load(object sender, EventArgs e)
+        {
+
+        }
+
+>>>>>>> 93aad3dbe17ffc3d7031d97c41ecc65e3e81257c:Tanks/Tanks/UI/TanksUI.cs
         private void label1_Click(object sender, EventArgs e)
         {
 
