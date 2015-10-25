@@ -29,13 +29,13 @@
         private void InitializeComponent()
         {
             this.panel2 = new System.Windows.Forms.Panel();
-            this.button6 = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.ShootButton = new System.Windows.Forms.Button();
+            this.MoveDownButton = new System.Windows.Forms.Button();
+            this.MoveRightButton = new System.Windows.Forms.Button();
+            this.MoveLeftButton = new System.Windows.Forms.Button();
+            this.MoveUpButton = new System.Windows.Forms.Button();
             this.JoinGameButton = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.MsgConsole = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.panel2.SuspendLayout();
@@ -43,63 +43,68 @@
             // 
             // panel2
             // 
-            this.panel2.Controls.Add(this.button6);
-            this.panel2.Controls.Add(this.button5);
-            this.panel2.Controls.Add(this.button4);
-            this.panel2.Controls.Add(this.button3);
-            this.panel2.Controls.Add(this.button2);
+            this.panel2.Controls.Add(this.ShootButton);
+            this.panel2.Controls.Add(this.MoveDownButton);
+            this.panel2.Controls.Add(this.MoveRightButton);
+            this.panel2.Controls.Add(this.MoveLeftButton);
+            this.panel2.Controls.Add(this.MoveUpButton);
             this.panel2.Controls.Add(this.JoinGameButton);
-            this.panel2.Controls.Add(this.textBox1);
+            this.panel2.Controls.Add(this.MsgConsole);
             this.panel2.Controls.Add(this.label1);
             this.panel2.Location = new System.Drawing.Point(507, 2);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(373, 500);
             this.panel2.TabIndex = 1;
             // 
-            // button6
+            // ShootButton
             // 
-            this.button6.Location = new System.Drawing.Point(277, 284);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(87, 36);
-            this.button6.TabIndex = 7;
-            this.button6.Text = "FIRE";
-            this.button6.UseVisualStyleBackColor = true;
+            this.ShootButton.Location = new System.Drawing.Point(277, 284);
+            this.ShootButton.Name = "ShootButton";
+            this.ShootButton.Size = new System.Drawing.Size(87, 36);
+            this.ShootButton.TabIndex = 7;
+            this.ShootButton.Text = "FIRE";
+            this.ShootButton.UseVisualStyleBackColor = true;
+            this.ShootButton.Click += new System.EventHandler(this.ShootButton_Click);
             // 
-            // button5
+            // MoveDownButton
             // 
-            this.button5.Location = new System.Drawing.Point(163, 378);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(50, 50);
-            this.button5.TabIndex = 6;
-            this.button5.Text = "DOWN";
-            this.button5.UseVisualStyleBackColor = true;
+            this.MoveDownButton.Location = new System.Drawing.Point(163, 378);
+            this.MoveDownButton.Name = "MoveDownButton";
+            this.MoveDownButton.Size = new System.Drawing.Size(50, 50);
+            this.MoveDownButton.TabIndex = 6;
+            this.MoveDownButton.Text = "DOWN";
+            this.MoveDownButton.UseVisualStyleBackColor = true;
+            this.MoveDownButton.Click += new System.EventHandler(this.MoveDownButton_Click);
             // 
-            // button4
+            // MoveRightButton
             // 
-            this.button4.Location = new System.Drawing.Point(211, 331);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(50, 50);
-            this.button4.TabIndex = 5;
-            this.button4.Text = "RIGHT";
-            this.button4.UseVisualStyleBackColor = true;
+            this.MoveRightButton.Location = new System.Drawing.Point(211, 331);
+            this.MoveRightButton.Name = "MoveRightButton";
+            this.MoveRightButton.Size = new System.Drawing.Size(50, 50);
+            this.MoveRightButton.TabIndex = 5;
+            this.MoveRightButton.Text = "RIGHT";
+            this.MoveRightButton.UseVisualStyleBackColor = true;
+            this.MoveRightButton.Click += new System.EventHandler(this.MoveRightButton_Click);
             // 
-            // button3
+            // MoveLeftButton
             // 
-            this.button3.Location = new System.Drawing.Point(115, 331);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(50, 50);
-            this.button3.TabIndex = 4;
-            this.button3.Text = "LEFT";
-            this.button3.UseVisualStyleBackColor = true;
+            this.MoveLeftButton.Location = new System.Drawing.Point(115, 331);
+            this.MoveLeftButton.Name = "MoveLeftButton";
+            this.MoveLeftButton.Size = new System.Drawing.Size(50, 50);
+            this.MoveLeftButton.TabIndex = 4;
+            this.MoveLeftButton.Text = "LEFT";
+            this.MoveLeftButton.UseVisualStyleBackColor = true;
+            this.MoveLeftButton.Click += new System.EventHandler(this.MoveLeftButton_Click);
             // 
-            // button2
+            // MoveUpButton
             // 
-            this.button2.Location = new System.Drawing.Point(163, 284);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(50, 50);
-            this.button2.TabIndex = 3;
-            this.button2.Text = "UP";
-            this.button2.UseVisualStyleBackColor = true;
+            this.MoveUpButton.Location = new System.Drawing.Point(163, 284);
+            this.MoveUpButton.Name = "MoveUpButton";
+            this.MoveUpButton.Size = new System.Drawing.Size(50, 50);
+            this.MoveUpButton.TabIndex = 3;
+            this.MoveUpButton.Text = "UP";
+            this.MoveUpButton.UseVisualStyleBackColor = true;
+            this.MoveUpButton.Click += new System.EventHandler(this.MoveUpButton_Click);
             // 
             // JoinGameButton
             // 
@@ -112,15 +117,15 @@
             this.JoinGameButton.UseVisualStyleBackColor = true;
             this.JoinGameButton.Click += new System.EventHandler(this.JoinGameButton_Click);
             // 
-            // textBox1
+            // MsgConsole
             // 
-            this.textBox1.Location = new System.Drawing.Point(13, 42);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.ReadOnly = true;
-            this.textBox1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBox1.Size = new System.Drawing.Size(351, 223);
-            this.textBox1.TabIndex = 1;
+            this.MsgConsole.Location = new System.Drawing.Point(13, 42);
+            this.MsgConsole.Multiline = true;
+            this.MsgConsole.Name = "MsgConsole";
+            this.MsgConsole.ReadOnly = true;
+            this.MsgConsole.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.MsgConsole.Size = new System.Drawing.Size(351, 223);
+            this.MsgConsole.TabIndex = 1;
             // 
             // label1
             // 
@@ -159,12 +164,12 @@
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Button button5;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button6;
+        private System.Windows.Forms.TextBox MsgConsole;
+        private System.Windows.Forms.Button MoveDownButton;
+        private System.Windows.Forms.Button MoveRightButton;
+        private System.Windows.Forms.Button MoveLeftButton;
+        private System.Windows.Forms.Button MoveUpButton;
+        private System.Windows.Forms.Button ShootButton;
         private System.Windows.Forms.Button JoinGameButton;
 
     }
