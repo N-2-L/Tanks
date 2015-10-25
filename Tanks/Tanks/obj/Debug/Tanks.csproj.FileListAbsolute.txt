@@ -1,5 +1,0 @@
-C:\Users\KeetMalin\Documents\GitHub\Programming Challenge 2\Tanks\Tanks\Tanks\bin\Debug\Tanks.exe.config
-D:\University\Semester4\PC2\Project\Tanks\Tanks\Tanks\bin\Debug\Tanks.exe.config
-D:\University\Semester4\PC2\Project\Tanks\Tanks\Tanks\obj\Debug\Tanks.csprojResolveAssemblyReference.cache
-D:\University\Semester4\PC2\Project\Tanks\Tanks\Tanks\obj\Debug\Tanks.UI.TanksUI.resources
-D:\University\Semester4\PC2\Project\Tanks\Tanks\Tanks\obj\Debug\Tanks.csproj.GenerateResource.Cache
