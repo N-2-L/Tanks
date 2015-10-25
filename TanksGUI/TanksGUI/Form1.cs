@@ -8,15 +8,17 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Tanks.UI
+namespace TanksGUI
 {
-    public partial class TanksUI : Form
+    public partial class Form1 : Form
     {
-        public TanksUI()
+        public Form1()
         {
             InitializeComponent();
         }
 
+<<<<<<< HEAD:TanksGUI/TanksGUI/Form1.cs
+=======
         private void panel1_Paint(object sender, PaintEventArgs e)
         {
 
@@ -27,6 +29,7 @@ namespace Tanks.UI
 
         }
 
+>>>>>>> 93aad3dbe17ffc3d7031d97c41ecc65e3e81257c:Tanks/Tanks/UI/TanksUI.cs
         private void label1_Click(object sender, EventArgs e)
         {
 
