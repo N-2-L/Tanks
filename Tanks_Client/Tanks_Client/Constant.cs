@@ -45,31 +45,31 @@ namespace Tanks_Client
         #endregion
 
         #region "Server Configurations"
-        public static string SERVER_IP = ConfigurationManager.AppSettings.Get("ServerIP");
-        public static int SERVER_PORT = int.Parse(ConfigurationManager.AppSettings.Get("ServerPort"));
-        public static int CLIENT_PORT = int.Parse(ConfigurationManager.AppSettings.Get("ClientPort"));
-        public static int LIFE_TIME = int.Parse(ConfigurationManager.AppSettings.Get("LifeTime"));
-        public static double PLAYER_DELAY = double.Parse(ConfigurationManager.AppSettings.Get("PlayerDelay"));
-        public static int BULLET_MULTI = int.Parse(ConfigurationManager.AppSettings.Get("BulletSpeedMulti"));
-        public static int UPDATE_PERIOD = (int)(PLAYER_DELAY / BULLET_MULTI);
+//        public static string SERVER_IP = ConfigurationManager.AppSettings.Get("ServerIP");
+//        public static int SERVER_PORT = int.Parse(ConfigurationManager.AppSettings.Get("ServerPort"));
+//        public static int CLIENT_PORT = int.Parse(ConfigurationManager.AppSettings.Get("ClientPort"));
+//        public static int LIFE_TIME = int.Parse(ConfigurationManager.AppSettings.Get("LifeTime"));
+//        public static double PLAYER_DELAY = double.Parse(ConfigurationManager.AppSettings.Get("PlayerDelay"));
+//        public static int BULLET_MULTI = int.Parse(ConfigurationManager.AppSettings.Get("BulletSpeedMulti"));
+//        public static int UPDATE_PERIOD = (int)(PLAYER_DELAY / BULLET_MULTI);
 
-        public static int PLAYER_HEALTH = int.Parse(ConfigurationManager.AppSettings.Get("PlayerHealth"));
-        public static int BRICK_POINTS = int.Parse(ConfigurationManager.AppSettings.Get("BrickPoints"));
-        public static int PLUNDER_TREASUR_LIFE = int.Parse(ConfigurationManager.AppSettings.Get("PlunderCoinPileLife"));
-
-
+//        public static int PLAYER_HEALTH = int.Parse(ConfigurationManager.AppSettings.Get("PlayerHealth"));
+//        public static int BRICK_POINTS = int.Parse(ConfigurationManager.AppSettings.Get("BrickPoints"));
+//        public static int PLUNDER_TREASUR_LIFE = int.Parse(ConfigurationManager.AppSettings.Get("PlunderCoinPileLife"));
 
 
 
 
 
 
-        public static int MAP_SIZE = int.Parse(ConfigurationManager.AppSettings.Get("MapSize"));
-        public static int MAX_BRICKS = int.Parse(ConfigurationManager.AppSettings.Get("MaxBricks"));
-        public static int MAX_OBSTACLES = int.Parse(ConfigurationManager.AppSettings.Get("MaxObs"));
-        public static int CoinPile_RATE = int.Parse(ConfigurationManager.AppSettings.Get("CoinPileRate"));
-        public static int LIFEPACK_RATE = int.Parse(ConfigurationManager.AppSettings.Get("LifePackRate"));
-        public static int AI_FACTOR = int.Parse(ConfigurationManager.AppSettings.Get("AI"));
+
+
+        public static int MAP_SIZE = 10;
+//        public static int MAX_BRICKS = int.Parse(ConfigurationManager.AppSettings.Get("MaxBricks"));
+//        public static int MAX_OBSTACLES = int.Parse(ConfigurationManager.AppSettings.Get("MaxObs"));
+//        public static int CoinPile_RATE = int.Parse(ConfigurationManager.AppSettings.Get("CoinPileRate"));
+//        public static int LIFEPACK_RATE = int.Parse(ConfigurationManager.AppSettings.Get("LifePackRate"));
+//        public static int AI_FACTOR = int.Parse(ConfigurationManager.AppSettings.Get("AI"));
 
         #endregion
     }
