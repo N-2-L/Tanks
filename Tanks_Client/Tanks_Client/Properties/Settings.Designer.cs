@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace TanksGUI.Properties
+namespace Tanks_Client.Properties
 {
 
 

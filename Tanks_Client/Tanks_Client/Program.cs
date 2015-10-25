@@ -1,20 +1,24 @@
-﻿using System;
+﻿//
+//original start point
+//
+//remove later
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Tanks.UI
+namespace Tanks_Client
 {
-    class GameWorldRepresenter
+    static class Program
     {
-        // GUI controller
+        [STAThread]
         static void Main()
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new TanksUI());
+            //Application.Run(new Form1());
         }
     }
 }
