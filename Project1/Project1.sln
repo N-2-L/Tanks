@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.30501.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tanks", "Tanks\Tanks.csproj", "{B581F7CE-E8DC-41DD-ADA5-5E5B4B1853D3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Project1", "Project1\Project1.csproj", "{8746F647-266E-48D8-BE12-ED6AECEA21B2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,10 +11,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{B581F7CE-E8DC-41DD-ADA5-5E5B4B1853D3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B581F7CE-E8DC-41DD-ADA5-5E5B4B1853D3}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B581F7CE-E8DC-41DD-ADA5-5E5B4B1853D3}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B581F7CE-E8DC-41DD-ADA5-5E5B4B1853D3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8746F647-266E-48D8-BE12-ED6AECEA21B2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8746F647-266E-48D8-BE12-ED6AECEA21B2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8746F647-266E-48D8-BE12-ED6AECEA21B2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8746F647-266E-48D8-BE12-ED6AECEA21B2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

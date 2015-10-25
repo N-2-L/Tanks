@@ -13,6 +13,75 @@ namespace Tanks
 {
     class Transmitter
     {
+
+        private TcpClient client;
+
+        private Thread thread;
+        private TcpListener tcpListener;
+
+        Int32 sendPort = 6000;
+        Int32 receivePort = 7000;
+
+        IPAddress localAddr = IPAddress.Parse("127.0.0.1");
+
+        public Transmitter()
+        {
+            thread = new Thread(new ThreadStart(Receiver));
+        }
+
+        public void Sender(String msg)
+        {
+            client = new TcpClient();
+            client.Connect(localAddr, sendPort);
+            Stream stream = client.GetStream();
+
+            ASCIIEncoding ascii = new ASCIIEncoding();
+            byte[] temp = ascii.GetBytes(msg);
+
+            stream.Write(temp, 0, temp.Length);
+            stream.Close();
+            client.Close();
+            if (msg.Equals("JOIN#"))
+            {
+                thread.Start();
+            }
+
+        }
+
+        public void Receiver() {
+            this.tcpListener = new TcpListener(IPAddress.Any, receivePort);
+
+            while (true){
+                tcpListener.Start();
+                TcpClient client = this.tcpListener.AcceptTcpClient();
+                Stream streamReceiver = client.GetStream();
+                Byte[] bytes = new Byte[256];
+
+                int i;
+                String data = null;
+
+                while ((i = streamReceiver.Read(bytes, 0, bytes.Length)) != 0) { 
+
+                    //gets the string
+                    data = System.Text.Encoding.ASCII.GetString( bytes , 0 , i);
+                }
+                Console.WriteLine(data);
+
+                streamReceiver.Close();
+                tcpListener.Stop();
+                client.Close();
+
+            }
+
+
+
+        }
+
+    }
+
+}
+
+        /*
         public Boolean Transmit(String ip, String port, String data)
         {
             TcpClient client = new TcpClient();
@@ -106,4 +175,4 @@ namespace Tanks
             tcpClient.Close();
         }
     }
-}
+}*/

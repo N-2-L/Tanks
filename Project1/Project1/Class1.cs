@@ -9,15 +9,20 @@ using System.IO;
 
 namespace Tanks
 {
-    class ClientClass
+    class Client
     {
         public static void Main(string[] args)
         {
             Transmitter temp = new Transmitter();
-            temp.Transmit("127.0.0.1", "6000", "hello");
-            temp.Transmit("127.0.0.1", "6000", "JOIN#");
-            Listener temp2 = new Listener();
-            temp2.Server();
+            temp.Sender("JOIN#");
+
+
+            //temp.Transmit("127.0.0.1", "6000", "hello");
+            //temp.Transmit("127.0.0.1", "6000", "JOIN#");
+            //Listener temp2 = new Listener();
+            //temp2.Server();
+
+           // temp.
 
 
 
