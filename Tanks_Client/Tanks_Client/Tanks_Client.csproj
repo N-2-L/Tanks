@@ -46,7 +46,8 @@
   <ItemGroup>
     <Compile Include="ClientClass.cs" />
     <Compile Include="Constant.cs" />
-    <Compile Include="MsgPasser.cs" />
+    <Compile Include="DataType\MsgObject.cs" />
+    <Compile Include="MsgParser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StartClient.cs" />
     <Compile Include="UI\ClientUI.cs">

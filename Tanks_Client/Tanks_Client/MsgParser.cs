@@ -2,20 +2,42 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
+using Tanks_Client.DataType;
 
 namespace Tanks_Client
 {
-    class MsgPasser
+    class MsgParser
     {
 
         //make this singleton if necessary
         //create object of ClientClass
-        ClientClass clientObject = new ClientClass();
+        //ClientClass clientObject = new ClientClass();
+        
+        //this queue will store all the msgs sent by the server
+        private Queue<MsgObject> msgQueue  = new Queue<MsgObject>();
+
+        //this thread is used to keep parsing msgs as long as the game is connected
+        private Thread thread;
+
+        //True if game is alive. False if otherwise
+        private Boolean gameRunning =true;
+
+        //constructor for MsgParser class
+        public MsgParser() {
+            thread = new Thread(new ThreadStart(msgProcessor));
+            thread.Start();
+        }
 
 
-
-
+        //will loop and decode msgs as the queue gets updated
+        public void msgProcessor() {
+            while (gameRunning) { 
+                
+            
+            }
+        }
 
 
         /**********use this method to decode random msgs from server*************/
@@ -46,7 +68,7 @@ namespace Tanks_Client
             //initial map details
             if (identifier.Equals("I"))
             {
-                playerName = splitString[1];
+                String playerName = splitString[1];
                 //have to split and take the positions
                 var brickList = splitString[2].Split(';');
                 var stoneList = splitString[3].Split(';');
@@ -63,7 +85,7 @@ namespace Tanks_Client
             if (identifier.Equals("C"))
             {
                 //get coin pack details
-
+                
 
             }
             if (identifier.Equals("L"))
@@ -75,9 +97,6 @@ namespace Tanks_Client
 
 
         }
-
-
-
 
 
 
@@ -138,9 +157,6 @@ namespace Tanks_Client
 
 
 
-
-
-
         /**********use this method to join game to the server***********/
         /**********return string should be displayed in a TextBox***********/
         public String joinGame()
@@ -173,5 +189,11 @@ namespace Tanks_Client
 
 
         }
+    
+        /*********setter for msgQueue Queue *********/
+        public void addMsg(MsgObject msgObject) {
+            this.msgQueue.Enqueue(msgObject);
+        }
+    
     }
 }
