@@ -57,6 +57,9 @@ namespace Tanks_Client
             //this loop will keep on listening
             while (true)
             {
+                // Always use a Sleep call in a while(true) loop 
+                // to avoid locking up your CPU. --Shanika
+                //Thread.Sleep(10);
                 tcpListener.Start();
                 TcpClient client = this.tcpListener.AcceptTcpClient();
                 Stream streamReceiver = client.GetStream();

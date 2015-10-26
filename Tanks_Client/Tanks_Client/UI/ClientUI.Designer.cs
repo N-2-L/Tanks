@@ -162,7 +162,6 @@
         #endregion
 
         private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox MsgConsole;
         private System.Windows.Forms.Button MoveDownButton;
@@ -171,6 +170,7 @@
         private System.Windows.Forms.Button MoveUpButton;
         private System.Windows.Forms.Button ShootButton;
         private System.Windows.Forms.Button JoinGameButton;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
 
     }
 }

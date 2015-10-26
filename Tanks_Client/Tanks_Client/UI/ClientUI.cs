@@ -25,7 +25,7 @@ namespace Tanks_Client.UI
                 for (int j = 0; j < Constant.MAP_SIZE; j++)
                     map[i, j] = "E";
             }
-            drawMap();
+            drawMap();//not working
             //instantiate network client
             networkClient = new ClientClass();
 
@@ -45,6 +45,7 @@ namespace Tanks_Client.UI
 
         private void JoinGameButton_Click(object sender, EventArgs e)
         {
+            drawMap();
             networkClient.Sender("JOIN#");
         }
 
@@ -82,17 +83,18 @@ namespace Tanks_Client.UI
         private void drawMap()
         {
             int offsetX = 10, offsetY = 10;
-            Pen pen = new Pen(Color.Navy);
-            Graphics UIGraphics = this.CreateGraphics();
+            Pen pen = new Pen(Color.Red);
+            Graphics UIGraphics = flowLayoutPanel1.CreateGraphics();
+            UIGraphics.DrawLine(pen, 10, 10, 480, 10);
             UIGraphics.DrawLine(pen, 0, 0, 200, 200);
 
-            SolidBrush PaintEmpty = new SolidBrush(Color.Gray);
+            SolidBrush PaintEmptyCell = new SolidBrush(Color.Black);
 
             for (int i = 0; i < Constant.MAP_SIZE; i++)
             {
                 for (int j = 0; j < Constant.MAP_SIZE; j++)
                 {
-                    Brush brush = PaintEmpty;
+                    Brush brush = PaintEmptyCell;
                     UIGraphics.FillRectangle(brush, new Rectangle(i * 20 + offsetX, j * 20 + offsetY, 10, 10));
                 }
             }
