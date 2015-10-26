@@ -11,6 +11,10 @@ namespace Tanks_Client
     class MsgParser
     {
 
+        //will store locations sent by each msg
+        private string[,] map;
+
+
         //make this singleton if necessary
         //create object of ClientClass
         //ClientClass clientObject = new ClientClass();
@@ -28,6 +32,13 @@ namespace Tanks_Client
         public MsgParser() {
             thread = new Thread(new ThreadStart(msgProcessor));
             thread.Start();
+
+            map = new string[Constant.MAP_SIZE, Constant.MAP_SIZE];
+            for (int i = 0; i < Constant.MAP_SIZE; i++)
+            {
+                for (int j = 0; j < Constant.MAP_SIZE; j++)
+                    map[i, j] = Constant.EMPTY;
+            }
         }
 
 
@@ -124,15 +135,14 @@ namespace Tanks_Client
             //specifies details of the player at the beginning
             if (identifier.Equals("S")) {
 
-                List<List<String>> playerList = new List<List<String>>(); //Creates new nested List
-                playerList.Add(new List<String>()); //Adds new sub List
                 for (int i = 0; i <= (splitString.Length-1)/4; i++)
                 {
-                    playerList[i].Add(splitString[1]);
-                    playerList[i].Add(splitString[2].Split(',')[0]);
-                    playerList[i].Add(splitString[2].Split(',')[1]);
-                    playerList[i].Add(splitString[3]);
-                    
+                    String playerName = splitString[1];
+                    String x = splitString[2].Split(',')[0];
+                    String y = splitString[2].Split(',')[1];
+                    String direction = splitString[3];
+                    map[Int32.Parse(x), Int32.Parse(y)] = playerName;
+              
                 }
                          
             }
@@ -142,9 +152,27 @@ namespace Tanks_Client
             {
                 String playerName = splitString[1];
                 //have to split and take the positions
+
                 var brickList = splitString[2].Split(';');
+                for (int i = 0; i < brickList.Length; i++) {
+                    String x = brickList[0].Split(',')[0];
+                    String y = brickList[0].Split(',')[1];
+                    map[Int32.Parse(x) , Int32.Parse(y)] = Constant.BRICK;
+                }
                 var stoneList = splitString[3].Split(';');
+                for (int i = 0; i < brickList.Length; i++)
+                {
+                    String x = stoneList[0].Split(',')[0];
+                    String y = stoneList[0].Split(',')[1];
+                    map[Int32.Parse(x), Int32.Parse(y)] = Constant.STONE;
+                }
                 var waterList = splitString[4].Split(';');
+                for (int i = 0; i < waterList.Length; i++)
+                {
+                    String x = waterList[0].Split(',')[0];
+                    String y = waterList[0].Split(',')[1];
+                    map[Int32.Parse(x), Int32.Parse(y)] = Constant.WATER;
+                }
 
                 
             }
@@ -163,6 +191,8 @@ namespace Tanks_Client
                     String health = playerSplit[4];
                     String coin = playerSplit[5];
                     String points = playerSplit[6];
+                    map[Int32.Parse(x), Int32.Parse(y)] = playerName;
+
                 }
                 var brickList = splitString[splitString.Length-1].Split(';');
                 for (int i = 0; i < brickList.Length - 2; i++)
@@ -177,10 +207,12 @@ namespace Tanks_Client
             }
             if (identifier.Equals("C"))
             {
-                //get coin details
+                //get coin details                   
+                
                 String x = splitString[1].Split(',')[0];
                 String y = splitString[1].Split(',')[1];
                 String time = splitString[2];
+                map[Int32.Parse(x), Int32.Parse(y)] = Constant.COIN;
 
 
             }
@@ -191,6 +223,7 @@ namespace Tanks_Client
                 String y = splitString[1].Split(',')[1];
                 String time = splitString[2];
                 String value = splitString[3];
+                map[Int32.Parse(x), Int32.Parse(y)] = Constant.LIFE;
 
             }
 
@@ -293,6 +326,11 @@ namespace Tanks_Client
         /*********setter for msgQueue Queue *********/
         public void addMsg(MsgObject msgObject) {
             this.msgQueue.Enqueue(msgObject);
+        }
+
+        /********getter for map 2d array**********/
+        public string[,] getMap() {
+            return map;
         }
     
     }

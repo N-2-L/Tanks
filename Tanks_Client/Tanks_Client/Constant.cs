@@ -51,6 +51,12 @@ namespace Tanks_Client
         public const string STONE = "S";
         public const string COIN = "C";
         public const string LIFE = "L";
+        public const string PLAYER_1 = "P1";
+        public const string PLAYER_2 = "P2";
+        public const string PLAYER_3 = "P3";
+        public const string PLAYER_4 = "P4";
+        public const string PLAYER_5 = "P5";
+
         #endregion
 
         #region "Server Configurations"

@@ -15,6 +15,7 @@ namespace Tanks_Client
 {
     class ClientClass
     {
+        
         //will store the received msgs
         private String msg = null;
 
