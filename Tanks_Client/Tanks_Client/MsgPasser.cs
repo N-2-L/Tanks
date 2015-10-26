@@ -9,12 +9,72 @@ namespace Tanks_Client
     class MsgPasser
     {
 
-        String msg = "";
+        //make this singleton if necessary
         //create object of ClientClass
         ClientClass clientObject = new ClientClass();
 
 
 
+
+
+
+        /**********use this method to decode random msgs from server*************/
+        /**********identifies the type of msg and extracts the necessary information from it*************/
+        public void messageDeoder(String msg) {
+
+            var splitString = msg.Split(':');
+
+            //used to identify the type of msg
+            String identifier = splitString[0];
+
+            //specifies details of the player at the beginning
+            if (identifier.Equals("S")) {
+
+                List<List<String>> playerList = new List<List<String>>(); //Creates new nested List
+                playerList.Add(new List<String>()); //Adds new sub List
+                for (int i = 0; i <= (splitString.Length-1)/4; i++)
+                {
+                    playerList[i].Add(splitString[1]);
+                    playerList[i].Add(splitString[2].Split(',')[0]);
+                    playerList[i].Add(splitString[2].Split(',')[1]);
+                    playerList[i].Add(splitString[3]);
+                    
+                }
+                         
+            }
+
+            //initial map details
+            if (identifier.Equals("I"))
+            {
+                playerName = splitString[1];
+                //have to split and take the positions
+                var brickList = splitString[2].Split(';');
+                var stoneList = splitString[3].Split(';');
+                var waterList = splitString[4].Split(';');
+
+                
+            }
+
+            if (identifier.Equals("G"))
+            {
+                //get gameplay details
+
+            }
+            if (identifier.Equals("C"))
+            {
+                //get coin pack details
+
+
+            }
+            if (identifier.Equals("L"))
+            {
+                //get LifePack Details
+
+
+            }
+
+
+        }
 
 
 
@@ -33,35 +93,37 @@ namespace Tanks_Client
             //this string will accept the reply from server when trying to issue a command
             String reply = "";
 
-            if (reply.Equals("OBSTACLE#"))
+
+            //
+            if (reply.Equals(Constant.S2C_HITONOBSTACLE))
             {
                 return "Blocked by an obstacle";
             }
-            else if (reply.Equals("CELL_OCCUPIED#"))
+            else if (reply.Equals(Constant.S2C_CELLOCCUPIED))
             {
                 return "Cell is occupied by another player";
             }
-            else if (reply.Equals("DEAD#"))
+            else if (reply.Equals(Constant.S2C_NOTALIVE))
             {
                 return "You are already dead";
             }
-            else if (reply.Equals("TOO_QUICK#"))
+            else if (reply.Equals(Constant.S2C_TOOEARLY))
             {
                 return "The command is too quick";
             }
-            else if (reply.Equals("INVALID_CELL#"))
+            else if (reply.Equals(Constant.S2C_INVALIDCELL))
             {
                 return "Cell is invalid";
             }
-            else if (reply.Equals("GAME_HAS_FINISHED#"))
+            else if (reply.Equals(Constant.S2C_GAMEOVER))
             {
                 return "The game has finished";
             }
-            else if (reply.Equals("GAME_NOT_STARTED_YET#"))
+            else if (reply.Equals(Constant.S2C_NOTSTARTED))
             {
                 return "Game has not started yet";
             }
-            else if (reply.Equals("NOT_A_VALID_CONTESTANT#"))
+            else if (reply.Equals(Constant.S2C_NOTACONTESTANT))
             {
                 return "You are not a valid contestant";
             }
@@ -91,15 +153,15 @@ namespace Tanks_Client
             String reply = "";
 
 
-            if (reply.Equals("PLAYERS_FULL#"))
+            if (reply.Equals(Constant.S2C_CONTESTANTSFULL))
             {
                 return "Players Full";
             }
-            else if (reply.Equals("ALREADY_ADDED#"))
+            else if (reply.Equals(Constant.S2C_ALREADYADDED))
             {
                 return "Already connected";
             }
-            else if (reply.Equals("GAME_ALREADY_STARTED#"))
+            else if (reply.Equals(Constant.S2C_GAMESTARTED))
             {
                 return "Game has already begun";
             }
