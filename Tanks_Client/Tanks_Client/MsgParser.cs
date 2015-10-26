@@ -33,9 +33,78 @@ namespace Tanks_Client
 
         //will loop and decode msgs as the queue gets updated
         public void msgProcessor() {
-            while (gameRunning) { 
-                
+            while (gameRunning) {
+                if (msgQueue.Count != 0) {
+                    MsgObject msgObject = msgQueue.Dequeue();
+                    String msg = msgObject.getMessage();
+                    DateTime time = msgObject.getTime();
+
+                    var splitString = msg.Split(':');
+
+                    if (splitString.Length == 0)
+                    {
+                        //a response msg which is a warning to be handled
+                        warningHandler(msg);
+                    }
+                    else {
+                        //if the server response is an update to the GUI
+                        messageDeoder(msg);
+                    }
+
+                }
             
+            }
+        }
+
+        /**********this will handle warnings sent by the server***********/
+        public void warningHandler(String reply) {
+            if (reply.Equals(Constant.S2C_HITONOBSTACLE))
+            {
+                Console.WriteLine( "Blocked by an obstacle");
+            }
+            else if (reply.Equals(Constant.S2C_CELLOCCUPIED))
+            {
+                Console.WriteLine("Cell is occupied by another player");
+            }
+            else if (reply.Equals(Constant.S2C_NOTALIVE))
+            {
+                Console.WriteLine( "You are already dead");
+            }
+            else if (reply.Equals(Constant.S2C_TOOEARLY))
+            {
+                Console.WriteLine( "The command is too quick");
+            }
+            else if (reply.Equals(Constant.S2C_INVALIDCELL))
+            {
+                Console.WriteLine( "Cell is invalid");
+            }
+            else if (reply.Equals(Constant.S2C_GAMEOVER))
+            {
+                Console.WriteLine( "The game has finished");
+            }
+            else if (reply.Equals(Constant.S2C_NOTSTARTED))
+            {
+                Console.WriteLine( "Game has not started yet");
+            }
+            else if (reply.Equals(Constant.S2C_NOTACONTESTANT))
+            {
+                Console.WriteLine( "You are not a valid contestant");
+            }
+            else if (reply.Equals(Constant.S2C_CONTESTANTSFULL))
+            {
+                Console.WriteLine(  "Players Full");
+            }
+            else if (reply.Equals(Constant.S2C_ALREADYADDED))
+            {
+                Console.WriteLine(  "Already connected");
+            }
+            else if (reply.Equals(Constant.S2C_GAMESTARTED))
+            {
+                Console.WriteLine(  "Game has already begun");
+            }
+            else
+            {
+                Console.WriteLine(reply);
             }
         }
 
@@ -80,18 +149,45 @@ namespace Tanks_Client
             if (identifier.Equals("G"))
             {
                 //get gameplay details
+                //get details of players
+                for (int i = 0; i < splitString.Length - 2; i++) {
+                    var playerSplit = splitString[i + 1].Split(';');
+                    String playerName = playerSplit[0];
+                    String x = playerSplit[1].Split(',')[0];
+                    String y = playerSplit[1].Split(',')[1];
+                    String direction = playerSplit[2];
+                    String shot = playerSplit[3];
+                    String health = playerSplit[4];
+                    String coin = playerSplit[5];
+                    String points = playerSplit[6];
+                }
+                var brickList = splitString[splitString.Length-1].Split(';');
+                for (int i = 0; i < brickList.Length - 2; i++)
+                {
+                    var damageBrick = brickList[i].Split(',');
+                    String x = damageBrick[0];
+                    String y = damageBrick[1];
+                    String damageLevel = damageBrick[2];
+                
+                }
 
             }
             if (identifier.Equals("C"))
             {
-                //get coin pack details
-                
+                //get coin details
+                String x = splitString[1].Split(',')[0];
+                String y = splitString[1].Split(',')[1];
+                String time = splitString[2];
+
 
             }
             if (identifier.Equals("L"))
             {
                 //get LifePack Details
-
+                String x = splitString[1].Split(',')[0];
+                String y = splitString[1].Split(',')[1];
+                String time = splitString[2];
+                String value = splitString[3];
 
             }
 
@@ -146,6 +242,7 @@ namespace Tanks_Client
             {
                 return "You are not a valid contestant";
             }
+
             else
             {
                 //return an empty String if command is successful
