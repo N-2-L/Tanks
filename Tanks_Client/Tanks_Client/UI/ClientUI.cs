@@ -12,6 +12,7 @@ namespace Tanks_Client.UI
 {
     public partial class ClientUI : Form
     {
+        private MsgPasser parser;
         private ClientClass networkClient;
         private string[,] map;
         public ClientUI()
@@ -25,27 +26,22 @@ namespace Tanks_Client.UI
                 for (int j = 0; j < Constant.MAP_SIZE; j++)
                     map[i, j] = "E";
             }
-            drawMap();//not working
+            //instantiate message passer
+            parser = new MsgPasser();
             //instantiate network client
-            networkClient = new ClientClass();
+            networkClient = new ClientClass(parser);
 
             //Incoming messages processing
  
         }
 
-        private void panel1_Paint(object sender, PaintEventArgs e)
+        private void MapPanel_Paint(object sender, PaintEventArgs e)
         {
-
-        }
-
-        private void ClientUI_Load(object sender, EventArgs e)
-        {
-
+            drawMap();
         }
 
         private void JoinGameButton_Click(object sender, EventArgs e)
         {
-            drawMap();
             networkClient.Sender("JOIN#");
         }
 
@@ -83,10 +79,16 @@ namespace Tanks_Client.UI
         private void drawMap()
         {
             int offsetX = 10, offsetY = 10;
-            Pen pen = new Pen(Color.Red);
-            Graphics UIGraphics = flowLayoutPanel1.CreateGraphics();
-            UIGraphics.DrawLine(pen, 10, 10, 480, 10);
-            UIGraphics.DrawLine(pen, 0, 0, 200, 200);
+            Pen pen = new Pen(Color.Navy);
+            Graphics UIGraphics = MapPanel.CreateGraphics();
+            for (int i = 0; i <= Constant.MAP_SIZE; i++)
+            {
+                UIGraphics.DrawLine(pen, i * 48 + 10, 10, 480, i * 48 + 10);
+            }
+            for (int i = 0; i <= Constant.MAP_SIZE; i++)
+            {
+                UIGraphics.DrawLine(pen, 10, i * 48, 480, 10);
+            }    
 
             SolidBrush PaintEmptyCell = new SolidBrush(Color.Black);
 
@@ -129,6 +131,7 @@ namespace Tanks_Client.UI
             pen.Dispose();
             formGraphics.Dispose();
         }
+
         //UI processing methods end
     }
 }

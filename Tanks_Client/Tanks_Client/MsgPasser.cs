@@ -46,7 +46,7 @@ namespace Tanks_Client
             //initial map details
             if (identifier.Equals("I"))
             {
-                playerName = splitString[1];
+                String playerName = splitString[1];
                 //have to split and take the positions
                 var brickList = splitString[2].Split(';');
                 var stoneList = splitString[3].Split(';');
