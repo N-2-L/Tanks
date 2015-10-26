@@ -127,6 +127,7 @@ namespace Tanks_Client
         /**********identifies the type of msg and extracts the necessary information from it*************/
         public void messageDeoder(String msg) {
 
+            msg = msg.Substring(0 , msg.Length-1);
             var splitString = msg.Split(':');
 
             //used to identify the type of msg
@@ -137,10 +138,11 @@ namespace Tanks_Client
 
                 for (int i = 0; i <= (splitString.Length-1)/4; i++)
                 {
-                    String playerName = splitString[1];
-                    String x = splitString[2].Split(',')[0];
-                    String y = splitString[2].Split(',')[1];
-                    String direction = splitString[3];
+                    var playerDetails = splitString[1].Split(';');
+                    String playerName = playerDetails[0];
+                    String x = playerDetails[1].Split(',')[0];
+                    String y = playerDetails[1].Split(',')[1];
+                    String direction = playerDetails[2];
                     map[Int32.Parse(x), Int32.Parse(y)] = playerName;
               
                 }
@@ -212,6 +214,7 @@ namespace Tanks_Client
                 String x = splitString[1].Split(',')[0];
                 String y = splitString[1].Split(',')[1];
                 String time = splitString[2];
+                String value = splitString[3];
                 map[Int32.Parse(x), Int32.Parse(y)] = Constant.COIN;
 
 
@@ -222,7 +225,6 @@ namespace Tanks_Client
                 String x = splitString[1].Split(',')[0];
                 String y = splitString[1].Split(',')[1];
                 String time = splitString[2];
-                String value = splitString[3];
                 map[Int32.Parse(x), Int32.Parse(y)] = Constant.LIFE;
 
             }
