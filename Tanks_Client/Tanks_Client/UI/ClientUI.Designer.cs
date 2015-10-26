@@ -37,7 +37,7 @@
             this.JoinGameButton = new System.Windows.Forms.Button();
             this.MsgConsole = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.MapPanel = new System.Windows.Forms.Panel();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -136,23 +136,23 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Communication With Server";
             // 
-            // flowLayoutPanel1
+            // MapPanel
             // 
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(3, 2);
-            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(498, 500);
-            this.flowLayoutPanel1.TabIndex = 2;
+            this.MapPanel.Location = new System.Drawing.Point(4, 2);
+            this.MapPanel.Name = "MapPanel";
+            this.MapPanel.Size = new System.Drawing.Size(500, 500);
+            this.MapPanel.TabIndex = 2;
+            this.MapPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.MapPanel_Paint);
             // 
             // ClientUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(883, 508);
-            this.Controls.Add(this.flowLayoutPanel1);
+            this.Controls.Add(this.MapPanel);
             this.Controls.Add(this.panel2);
             this.Name = "ClientUI";
             this.Text = "ClientUI";
-            this.Load += new System.EventHandler(this.ClientUI_Load);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             this.ResumeLayout(false);
@@ -162,7 +162,6 @@
         #endregion
 
         private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox MsgConsole;
         private System.Windows.Forms.Button MoveDownButton;
@@ -171,6 +170,7 @@
         private System.Windows.Forms.Button MoveUpButton;
         private System.Windows.Forms.Button ShootButton;
         private System.Windows.Forms.Button JoinGameButton;
+        private System.Windows.Forms.Panel MapPanel;
 
     }
 }

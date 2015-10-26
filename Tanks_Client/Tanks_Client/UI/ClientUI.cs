@@ -12,6 +12,7 @@ namespace Tanks_Client.UI
 {
     public partial class ClientUI : Form
     {
+        private MsgPasser parser;
         private ClientClass networkClient;
         private string[,] map;
         public ClientUI()
@@ -25,22 +26,18 @@ namespace Tanks_Client.UI
                 for (int j = 0; j < Constant.MAP_SIZE; j++)
                     map[i, j] = "E";
             }
-            drawMap();
+            //instantiate message passer
+            parser = new MsgPasser();
             //instantiate network client
-            networkClient = new ClientClass();
+            networkClient = new ClientClass(parser);
 
             //Incoming messages processing
  
         }
 
-        private void panel1_Paint(object sender, PaintEventArgs e)
+        private void MapPanel_Paint(object sender, PaintEventArgs e)
         {
-
-        }
-
-        private void ClientUI_Load(object sender, EventArgs e)
-        {
-
+            drawMap();
         }
 
         private void JoinGameButton_Click(object sender, EventArgs e)
@@ -83,16 +80,23 @@ namespace Tanks_Client.UI
         {
             int offsetX = 10, offsetY = 10;
             Pen pen = new Pen(Color.Navy);
-            Graphics UIGraphics = this.CreateGraphics();
-            UIGraphics.DrawLine(pen, 0, 0, 200, 200);
+            Graphics UIGraphics = MapPanel.CreateGraphics();
+            for (int i = 0; i <= Constant.MAP_SIZE; i++)
+            {
+                UIGraphics.DrawLine(pen, i * 48 + 10, 10, 480, i * 48 + 10);
+            }
+            for (int i = 0; i <= Constant.MAP_SIZE; i++)
+            {
+                UIGraphics.DrawLine(pen, 10, i * 48, 480, 10);
+            }    
 
-            SolidBrush PaintEmpty = new SolidBrush(Color.Gray);
+            SolidBrush PaintEmptyCell = new SolidBrush(Color.Black);
 
             for (int i = 0; i < Constant.MAP_SIZE; i++)
             {
                 for (int j = 0; j < Constant.MAP_SIZE; j++)
                 {
-                    Brush brush = PaintEmpty;
+                    Brush brush = PaintEmptyCell;
                     UIGraphics.FillRectangle(brush, new Rectangle(i * 20 + offsetX, j * 20 + offsetY, 10, 10));
                 }
             }
@@ -127,6 +131,7 @@ namespace Tanks_Client.UI
             pen.Dispose();
             formGraphics.Dispose();
         }
+
         //UI processing methods end
     }
 }
