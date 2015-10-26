@@ -38,7 +38,10 @@
             this.MsgConsole = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.MapPanel = new System.Windows.Forms.Panel();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
             this.panel2.SuspendLayout();
+            this.MapPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel2
@@ -138,11 +141,30 @@
             // 
             // MapPanel
             // 
+            this.MapPanel.Controls.Add(this.label3);
+            this.MapPanel.Controls.Add(this.label2);
             this.MapPanel.Location = new System.Drawing.Point(4, 2);
             this.MapPanel.Name = "MapPanel";
             this.MapPanel.Size = new System.Drawing.Size(500, 500);
             this.MapPanel.TabIndex = 2;
             this.MapPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.MapPanel_Paint);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(27, 27);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(0, 13);
+            this.label2.TabIndex = 0;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(103, 26);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(35, 13);
+            this.label3.TabIndex = 1;
+            this.label3.Text = "label3";
             // 
             // ClientUI
             // 
@@ -155,6 +177,8 @@
             this.Text = "ClientUI";
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
+            this.MapPanel.ResumeLayout(false);
+            this.MapPanel.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -171,6 +195,8 @@
         private System.Windows.Forms.Button ShootButton;
         private System.Windows.Forms.Button JoinGameButton;
         private System.Windows.Forms.Panel MapPanel;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label3;
 
     }
 }

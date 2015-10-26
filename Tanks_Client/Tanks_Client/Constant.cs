@@ -44,6 +44,15 @@ namespace Tanks_Client
         public const string S2C_SERVERERROR = "SERVER_ERROR";
         #endregion
 
+        #region  "Map Cells"
+        public const string EMPTY = "E";
+        public const string WATER = "W";
+        public const string BRICK = "B";
+        public const string STONE = "S";
+        public const string COIN = "C";
+        public const string LIFE = "L";
+        #endregion
+
         #region "Server Configurations"
 //        public static string SERVER_IP = ConfigurationManager.AppSettings.Get("ServerIP");
 //        public static int SERVER_PORT = int.Parse(ConfigurationManager.AppSettings.Get("ServerPort"));
