@@ -29,7 +29,7 @@ namespace Tanks_Client.DataType
         {
             return this.message;
         }
-        public DateTime setTime()
+        public DateTime getTime()
         {
             return this.time;
         }
