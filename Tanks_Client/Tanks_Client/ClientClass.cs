@@ -7,11 +7,19 @@ using System.Net.Sockets;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using Tanks_Client.DataType;
 
 namespace Tanks_Client
+
+    
 {
     class ClientClass
     {
+        //will store the received msgs
+        private String msg = null;
+
+        //this object is created to add objects to the MsgParser Class Queue
+        MsgParser msgParser;
 
         private TcpClient client;
         private Thread thread;
@@ -22,8 +30,9 @@ namespace Tanks_Client
 
         IPAddress localAddr = IPAddress.Parse("127.0.0.1");
 
-        public ClientClass()
+        public ClientClass(MsgParser parser)
         {
+            this.msgParser = parser;
             //constructor will initiate thread which will execute the receive method
             thread = new Thread(new ThreadStart(Receiver));
         }
@@ -76,6 +85,10 @@ namespace Tanks_Client
                 }
                 //write to console- for testing purposes
                 Console.WriteLine(data);
+                msg = data;
+                //creates a MsgObject object and stores the respectivr values
+                MsgObject msgObject = new MsgObject(msg, DateTime.Now);
+                msgParser.addMsg(msgObject);
 
                 streamReceiver.Close();
                 tcpListener.Stop();
@@ -85,6 +98,11 @@ namespace Tanks_Client
 
 
 
+        }
+
+        //this is used to retrieve the msg only
+        public String getMessage() {
+            return msg;
         }
 
 
