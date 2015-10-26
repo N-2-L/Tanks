@@ -107,7 +107,7 @@ namespace Tanks_Client
         {
 
             //send command request to ClientClass object
-            clientObject.Sender(command);
+            //clientObject.Sender(command);
 
             //this string will accept the reply from server when trying to issue a command
             String reply = "";
@@ -163,7 +163,7 @@ namespace Tanks_Client
         {
 
             //send join request to ClientClass object
-            clientObject.Sender(Constant.C2S_INITIALREQUEST);
+            //clientObject.Sender(Constant.C2S_INITIALREQUEST);
 
             //this string will accept the reply from server when trying to connect
             String reply = "";
