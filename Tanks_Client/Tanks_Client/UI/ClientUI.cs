@@ -12,7 +12,7 @@ namespace Tanks_Client.UI
 {
     public partial class ClientUI : Form
     {
-        private MsgPasser parser;
+        private MsgParser parser;
         private ClientClass networkClient;
         private string[,] map;
         public ClientUI()
@@ -27,7 +27,7 @@ namespace Tanks_Client.UI
                     map[i, j] = "E";
             }
             //instantiate message passer
-            parser = new MsgPasser();
+            parser = new MsgParser();
             //instantiate network client
             networkClient = new ClientClass(parser);
 

@@ -92,14 +92,17 @@ namespace Tanks_Client
             }
             else if (reply.Equals(Constant.S2C_CONTESTANTSFULL))
             {
+                gameRunning = false;
                 Console.WriteLine(  "Players Full");
             }
             else if (reply.Equals(Constant.S2C_ALREADYADDED))
             {
+                gameRunning = false;
                 Console.WriteLine(  "Already connected");
             }
             else if (reply.Equals(Constant.S2C_GAMESTARTED))
             {
+                gameRunning = false;
                 Console.WriteLine(  "Game has already begun");
             }
             else
