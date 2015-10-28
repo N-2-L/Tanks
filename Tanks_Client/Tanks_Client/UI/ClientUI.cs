@@ -43,6 +43,7 @@ namespace Tanks_Client.UI
         private void JoinGameButton_Click(object sender, EventArgs e)
         {
             networkClient.Sender("JOIN#");
+            updateMap();
         }
 
         private void MoveUpButton_Click(object sender, EventArgs e)
@@ -86,7 +87,6 @@ namespace Tanks_Client.UI
             Pen pen = new Pen(Color.Navy);
             pen.Width = 2;
             Graphics UIGraphics = tableLayoutPanel2.CreateGraphics();
-            //Graphics UIGraphics = MapPanel.CreateGraphics();
             for (int i = 0; i <= Constant.MAP_SIZE; i++)
             {
                 UIGraphics.DrawLine(pen, i * 48 + offsetX, 1, i * 48 + offsetX, 481);
@@ -112,7 +112,6 @@ namespace Tanks_Client.UI
         public void updateMap()
         {
             int offsetX = 3, offsetY = 3;
-            //Graphics UIGraphics = MapPanel.CreateGraphics();
             Graphics UIGraphics = tableLayoutPanel2.CreateGraphics();
 
             SolidBrush PaintEmptyCell = new SolidBrush(Color.LightGray);
@@ -120,21 +119,24 @@ namespace Tanks_Client.UI
             SolidBrush PaintStoneCell = new SolidBrush(Color.Gray);
             SolidBrush PaintBrickCell = new SolidBrush(Color.Maroon);
 
-            for (int i = 0; i < 10; i++)
+            while (parser.getGameRunning())
             {
-                for (int j = 0; j < 10; j++)
+                map = parser.getMap();
+                for (int i = 0; i < 10; i++)
                 {
-                    Brush b = null;
-                    if (map[i, j] == Constant.EMPTY) b = PaintEmptyCell;
-                    if (map[i, j] == Constant.WATER) b = PaintWaterCell;
-                    if (map[i, j] == Constant.STONE) b = PaintStoneCell;
-                    if (map[i, j] == Constant.BRICK) b = PaintBrickCell;
-                    UIGraphics.FillRectangle(b, new Rectangle(i * 48 + offsetX, j * 48 + offsetY, 44, 44));
+                    for (int j = 0; j < 10; j++)
+                    {
+                        Brush b = null;
+                        if (map[i, j] == Constant.EMPTY) b = PaintEmptyCell;
+                        if (map[i, j] == Constant.WATER) b = PaintWaterCell;
+                        if (map[i, j] == Constant.STONE) b = PaintStoneCell;
+                        if (map[i, j] == Constant.BRICK) b = PaintBrickCell;
+                        UIGraphics.FillRectangle(b, new Rectangle(i * 48 + offsetX, j * 48 + offsetY, 44, 44));
+                    }
                 }
             }
             UIGraphics.Dispose();
         }
-
         //UI processing methods end
     }
 }
