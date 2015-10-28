@@ -14,7 +14,7 @@ namespace Tanks_Client
         //will store locations sent by each msg
         private string[,] map;
 
-
+        private String message = "";
         //make this singleton if necessary
         //create object of ClientClass
         //ClientClass clientObject = new ClientClass();
@@ -51,6 +51,9 @@ namespace Tanks_Client
                     DateTime time = msgObject.getTime();
 
                     var splitString = msg.Split(':');
+
+                    //this will update message with time - to be printed on GUI
+                    message = msg + "\n" + time;
 
                     if (splitString.Length == 0)
                     {
@@ -336,6 +339,9 @@ namespace Tanks_Client
         }
         public Boolean getGameRunning() {
             return gameRunning;
+        }
+        public String getMessage() {
+            return message;
         }
     
     }
