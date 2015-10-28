@@ -334,6 +334,9 @@ namespace Tanks_Client
         public string[,] getMap() {
             return map;
         }
+        public Boolean getGameRunning() {
+            return gameRunning;
+        }
     
     }
 }
