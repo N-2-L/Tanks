@@ -82,18 +82,18 @@ namespace Tanks_Client.UI
 
         private void drawMap()
         {
-            int offsetX = 10, offsetY = 10;
+            int offsetX = 1, offsetY = 1;
             Pen pen = new Pen(Color.Navy); 
             pen.Width = 2;
             Graphics UIGraphics = tableLayoutPanel2.CreateGraphics();
             //Graphics UIGraphics = MapPanel.CreateGraphics();
             for (int i = 0; i <= Constant.MAP_SIZE; i++)
             {
-                UIGraphics.DrawLine(pen, i * 48 + offsetX, 10, i * 48 + offsetX, 490);
+                UIGraphics.DrawLine(pen, i * 48 + offsetX, 1, i * 48 + offsetX, 481);
             }
             for (int i = 0; i <= Constant.MAP_SIZE; i++)
             {
-                UIGraphics.DrawLine(pen, 10, i * 48 + offsetY, 490, i * 48 + offsetY);
+                UIGraphics.DrawLine(pen, 1, i * 48 + offsetY, 481, i * 48 + offsetY);
             }    
 
             SolidBrush PaintEmptyCell = new SolidBrush(Color.LightGray);
@@ -102,7 +102,7 @@ namespace Tanks_Client.UI
             {
                 for (int j = 0; j < Constant.MAP_SIZE; j++)
                 {
-                    UIGraphics.FillRectangle(PaintEmptyCell, new Rectangle(i * 48 + offsetX+2, j * 48 + offsetY+2, 44, 44));
+                    UIGraphics.FillRectangle(PaintEmptyCell, new Rectangle(i * 48 + offsetX + 2, j * 48 + offsetY + 2, 44, 44));
                 }
             }
             pen.Dispose();
@@ -111,8 +111,9 @@ namespace Tanks_Client.UI
 
         public void updateMap()
         {
-            int offsetX = 12, offsetY = 12;
-            Graphics UIGraphics = MapPanel.CreateGraphics();
+            int offsetX = 3, offsetY = 3;
+            //Graphics UIGraphics = MapPanel.CreateGraphics();
+            Graphics UIGraphics = tableLayoutPanel2.CreateGraphics();
 
             SolidBrush PaintEmptyCell = new SolidBrush(Color.LightGray);
             SolidBrush PaintWaterCell = new SolidBrush(Color.Aqua);
