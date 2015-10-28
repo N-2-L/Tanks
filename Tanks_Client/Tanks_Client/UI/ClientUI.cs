@@ -113,20 +113,38 @@ namespace Tanks_Client.UI
             SolidBrush PaintStoneCell = new SolidBrush(Color.Gray);
             SolidBrush PaintBrickCell = new SolidBrush(Color.Maroon);
 
-                map = parser.getMap();
-                for (int i = 0; i < 10; i++)
-                {
-                    for (int j = 0; j < 10; j++)
-                    {
-                        Brush b = PaintEmptyCell;
-                        //if (map[i, j] == Constant.EMPTY) b = PaintEmptyCell;
-                        if (map[i, j] == Constant.WATER) b = PaintWaterCell;
-                        if (map[i, j] == Constant.STONE) b = PaintStoneCell;
-                        if (map[i, j] == Constant.BRICK) b = PaintBrickCell;
-                        UIGraphics.FillRectangle(b, new Rectangle(i * 48 + offsetX, j * 48 + offsetY, 44, 44));
-                    }
-                }
+            //colours for lif and coin - keet
+            SolidBrush PaintLifeCell = new SolidBrush(Color.White);
+            SolidBrush PaintCoinCell = new SolidBrush(Color.Gold);
+            //player colours - keet
+            SolidBrush PaintP0Cell = new SolidBrush(Color.Orange);
+            SolidBrush PaintP1Cell = new SolidBrush(Color.Red);
+            SolidBrush PaintP2Cell = new SolidBrush(Color.Blue);
+            SolidBrush PaintP3Cell = new SolidBrush(Color.Green);
+            SolidBrush PaintP4Cell = new SolidBrush(Color.Yellow);
             
+
+            map = parser.getMap();
+            for (int i = 0; i < 10; i++)
+            {
+                for (int j = 0; j < 10; j++)
+                {
+                    Brush b = PaintEmptyCell;
+                    //if (map[i, j] == Constant.EMPTY) b = PaintEmptyCell;
+                    if (map[i, j] == Constant.WATER) b = PaintWaterCell;
+                    if (map[i, j] == Constant.STONE) b = PaintStoneCell;
+                    if (map[i, j] == Constant.BRICK) b = PaintBrickCell;
+                    if (map[i, j] == Constant.LIFE) b = PaintLifeCell;
+                    if (map[i, j] == Constant.COIN) b = PaintCoinCell;
+                    if (map[i, j] == Constant.PLAYER_0) b = PaintP0Cell;
+                    if (map[i, j] == Constant.PLAYER_1) b = PaintP1Cell;
+                    if (map[i, j] == Constant.PLAYER_2) b = PaintP2Cell;
+                    if (map[i, j] == Constant.PLAYER_3) b = PaintP3Cell;
+                    if (map[i, j] == Constant.PLAYER_4) b = PaintP4Cell;
+                        
+                    UIGraphics.FillRectangle(b, new Rectangle(i * 48 + offsetX, j * 48 + offsetY, 44, 44));
+                }
+            }
             UIGraphics.Dispose();
         }
 
