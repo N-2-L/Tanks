@@ -32,7 +32,7 @@ namespace Tanks_Client.UI
             networkClient = new ClientClass(parser);
 
             //Incoming messages processing
- 
+
         }
 
         private void MapPanel_Paint(object sender, PaintEventArgs e)
@@ -83,7 +83,7 @@ namespace Tanks_Client.UI
         private void drawMap()
         {
             int offsetX = 1, offsetY = 1;
-            Pen pen = new Pen(Color.Navy); 
+            Pen pen = new Pen(Color.Navy);
             pen.Width = 2;
             Graphics UIGraphics = tableLayoutPanel2.CreateGraphics();
             //Graphics UIGraphics = MapPanel.CreateGraphics();
@@ -94,7 +94,7 @@ namespace Tanks_Client.UI
             for (int i = 0; i <= Constant.MAP_SIZE; i++)
             {
                 UIGraphics.DrawLine(pen, 1, i * 48 + offsetY, 481, i * 48 + offsetY);
-            }    
+            }
 
             SolidBrush PaintEmptyCell = new SolidBrush(Color.LightGray);
 
@@ -124,7 +124,7 @@ namespace Tanks_Client.UI
             {
                 for (int j = 0; j < 10; j++)
                 {
-                    Brush b=null;
+                    Brush b = null;
                     if (map[i, j] == Constant.EMPTY) b = PaintEmptyCell;
                     if (map[i, j] == Constant.WATER) b = PaintWaterCell;
                     if (map[i, j] == Constant.STONE) b = PaintStoneCell;
