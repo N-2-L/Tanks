@@ -79,8 +79,15 @@ namespace Tanks_Client.UI
         private void drawMap()
         {
             int offsetX = 10, offsetY = 10;
+<<<<<<< HEAD
             Pen pen = new Pen(Color.Navy);
             Graphics UIGraphics = MapPanel.CreateGraphics();
+=======
+            Pen pen = new Pen(Color.Navy); 
+            pen.Width = 2;
+            Graphics UIGraphics = tableLayoutPanel2.CreateGraphics();
+            //Graphics UIGraphics = MapPanel.CreateGraphics();
+>>>>>>> ea1b1844872f7ea735bf40ae642e0909fbe7d31d
             for (int i = 0; i <= Constant.MAP_SIZE; i++)
             {
                 UIGraphics.DrawLine(pen, i * 48 + 10, 10, 480, i * 48 + 10);
