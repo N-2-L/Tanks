@@ -24,7 +24,7 @@ namespace Tanks_Client.UI
             for (int i = 0; i < Constant.MAP_SIZE; i++)
             {
                 for (int j = 0; j < Constant.MAP_SIZE; j++)
-                    map[i, j] = "E";
+                    map[i, j] = Constant.EMPTY;
             }
             //instantiate message passer
             parser = new MsgParser();
@@ -32,7 +32,7 @@ namespace Tanks_Client.UI
             networkClient = new ClientClass(parser);
 
             //Incoming messages processing
- 
+
         }
 
         private void MapPanel_Paint(object sender, PaintEventArgs e)
@@ -47,7 +47,11 @@ namespace Tanks_Client.UI
 
         private void MoveUpButton_Click(object sender, EventArgs e)
         {
-            networkClient.Sender("UP#");
+            map[5, 5] = map[9, 6] = map[0, 3] = map[2, 5] = map[5, 4] = "W";
+            map[5, 6] = map[9, 0] = map[0, 5] = map[2, 9] = map[5, 3] = "B";
+            map[5, 8] = map[9, 1] = map[0, 9] = map[2, 0] = map[5, 1] = "S";
+            updateMap();
+            //networkClient.Sender("UP#");
         }
 
         private void MoveLeftButton_Click(object sender, EventArgs e)
@@ -78,30 +82,27 @@ namespace Tanks_Client.UI
 
         private void drawMap()
         {
-            int offsetX = 10, offsetY = 10;
-
-            Pen pen = new Pen(Color.Navy); 
+            int offsetX = 1, offsetY = 1;
+            Pen pen = new Pen(Color.Navy);
             pen.Width = 2;
             Graphics UIGraphics = tableLayoutPanel2.CreateGraphics();
-
-
+            //Graphics UIGraphics = MapPanel.CreateGraphics();
             for (int i = 0; i <= Constant.MAP_SIZE; i++)
             {
-                UIGraphics.DrawLine(pen, i * 48 + 10, 10, 480, i * 48 + 10);
+                UIGraphics.DrawLine(pen, i * 48 + offsetX, 1, i * 48 + offsetX, 481);
             }
             for (int i = 0; i <= Constant.MAP_SIZE; i++)
             {
-                UIGraphics.DrawLine(pen, 10, i * 48, 480, 10);
-            }    
+                UIGraphics.DrawLine(pen, 1, i * 48 + offsetY, 481, i * 48 + offsetY);
+            }
 
-            SolidBrush PaintEmptyCell = new SolidBrush(Color.Black);
+            SolidBrush PaintEmptyCell = new SolidBrush(Color.LightGray);
 
             for (int i = 0; i < Constant.MAP_SIZE; i++)
             {
                 for (int j = 0; j < Constant.MAP_SIZE; j++)
                 {
-                    Brush brush = PaintEmptyCell;
-                    UIGraphics.FillRectangle(brush, new Rectangle(i * 20 + offsetX, j * 20 + offsetY, 10, 10));
+                    UIGraphics.FillRectangle(PaintEmptyCell, new Rectangle(i * 48 + offsetX + 2, j * 48 + offsetY + 2, 44, 44));
                 }
             }
             pen.Dispose();
@@ -110,36 +111,28 @@ namespace Tanks_Client.UI
 
         public void updateMap()
         {
+            int offsetX = 3, offsetY = 3;
+            //Graphics UIGraphics = MapPanel.CreateGraphics();
+            Graphics UIGraphics = tableLayoutPanel2.CreateGraphics();
 
-            while (true)
+            SolidBrush PaintEmptyCell = new SolidBrush(Color.LightGray);
+            SolidBrush PaintWaterCell = new SolidBrush(Color.Aqua);
+            SolidBrush PaintStoneCell = new SolidBrush(Color.Gray);
+            SolidBrush PaintBrickCell = new SolidBrush(Color.Maroon);
+
+            for (int i = 0; i < 10; i++)
             {
-                int offsetX = 10, offsetY = 10;
-                Pen pen = new Pen(Color.Red);
-                Graphics formGraphics = this.CreateGraphics();
-                formGraphics.DrawLine(pen, 0, 0, 200, 200);
-
-                SolidBrush brushEmpty = new SolidBrush(Color.White);
-                SolidBrush brushWater = new SolidBrush(Color.CadetBlue);
-                SolidBrush brushStone = new SolidBrush(Color.Black);
-                SolidBrush brushBrick = new SolidBrush(Color.Brown);
-
-                for (int i = 0; i < 10; i++)
+                for (int j = 0; j < 10; j++)
                 {
-                    for (int j = 0; j < 10; j++)
-                    {
-                        Brush b = brushEmpty;
-                        //if (map[i, j] == Constant.WATER) b = brushWater;
-                        //if (map[i, j] == Constant.STONE) b = brushStone;
-                        //if (map[i, j] == Constant.BRICK) b = brushBrick;
-                        formGraphics.FillRectangle(b, new Rectangle(i * 20 + offsetX, j * 20 + offsetY, 10, 10));
-
-                    }
+                    Brush b = null;
+                    if (map[i, j] == Constant.EMPTY) b = PaintEmptyCell;
+                    if (map[i, j] == Constant.WATER) b = PaintWaterCell;
+                    if (map[i, j] == Constant.STONE) b = PaintStoneCell;
+                    if (map[i, j] == Constant.BRICK) b = PaintBrickCell;
+                    UIGraphics.FillRectangle(b, new Rectangle(i * 48 + offsetX, j * 48 + offsetY, 44, 44));
                 }
-                pen.Dispose();
-                formGraphics.Dispose();
-
             }
-
+            UIGraphics.Dispose();
         }
 
         //UI processing methods end
