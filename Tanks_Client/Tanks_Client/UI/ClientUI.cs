@@ -106,30 +106,36 @@ namespace Tanks_Client.UI
 
         public void updateMap()
         {
-            int offsetX = 10, offsetY = 10;
-            Pen pen = new Pen(Color.Red);
-            Graphics formGraphics = this.CreateGraphics();
-            formGraphics.DrawLine(pen, 0, 0, 200, 200);
 
-            SolidBrush brushEmpty = new SolidBrush(Color.White);
-            SolidBrush brushWater = new SolidBrush(Color.CadetBlue);
-            SolidBrush brushStone = new SolidBrush(Color.Black);
-            SolidBrush brushBrick = new SolidBrush(Color.Brown);
-
-            for (int i = 0; i < 10; i++)
+            while (true)
             {
-                for (int j = 0; j < 10; j++)
-                {
-                    Brush b = brushEmpty;
-                    //if (map[i, j] == Constant.WATER) b = brushWater;
-                    //if (map[i, j] == Constant.STONE) b = brushStone;
-                    //if (map[i, j] == Constant.BRICK) b = brushBrick;
-                    formGraphics.FillRectangle(b, new Rectangle(i * 20 + offsetX, j * 20 + offsetY, 10, 10));
+                int offsetX = 10, offsetY = 10;
+                Pen pen = new Pen(Color.Red);
+                Graphics formGraphics = this.CreateGraphics();
+                formGraphics.DrawLine(pen, 0, 0, 200, 200);
 
+                SolidBrush brushEmpty = new SolidBrush(Color.White);
+                SolidBrush brushWater = new SolidBrush(Color.CadetBlue);
+                SolidBrush brushStone = new SolidBrush(Color.Black);
+                SolidBrush brushBrick = new SolidBrush(Color.Brown);
+
+                for (int i = 0; i < 10; i++)
+                {
+                    for (int j = 0; j < 10; j++)
+                    {
+                        Brush b = brushEmpty;
+                        //if (map[i, j] == Constant.WATER) b = brushWater;
+                        //if (map[i, j] == Constant.STONE) b = brushStone;
+                        //if (map[i, j] == Constant.BRICK) b = brushBrick;
+                        formGraphics.FillRectangle(b, new Rectangle(i * 20 + offsetX, j * 20 + offsetY, 10, 10));
+
+                    }
                 }
+                pen.Dispose();
+                formGraphics.Dispose();
+
             }
-            pen.Dispose();
-            formGraphics.Dispose();
+
         }
 
         //UI processing methods end
