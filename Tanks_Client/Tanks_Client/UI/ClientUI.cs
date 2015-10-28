@@ -137,6 +137,7 @@ namespace Tanks_Client.UI
             }
             UIGraphics.Dispose();
         }
+
         //UI processing methods end
     }
 }
