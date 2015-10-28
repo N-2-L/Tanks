@@ -15,6 +15,7 @@ namespace Tanks_Client.UI
         private MsgParser parser;
         private ClientClass networkClient;
         private string[,] map;
+        private Timer timer;
         public ClientUI()
         {
             InitializeComponent();
@@ -30,9 +31,12 @@ namespace Tanks_Client.UI
             parser = new MsgParser();
             //instantiate network client
             networkClient = new ClientClass(parser);
-
-            //Incoming messages processing
-
+            
+            //Adding a timer
+            timer = new Timer();
+            timer.Interval = 500;
+            timer.Tick += updateMap;//adding a listener
+            timer.Start();
         }
 
         private void MapPanel_Paint(object sender, PaintEventArgs e)
@@ -43,16 +47,11 @@ namespace Tanks_Client.UI
         private void JoinGameButton_Click(object sender, EventArgs e)
         {
             networkClient.Sender("JOIN#");
-            updateMap();
         }
 
         private void MoveUpButton_Click(object sender, EventArgs e)
         {
-            map[5, 5] = map[9, 6] = map[0, 3] = map[2, 5] = map[5, 4] = "W";
-            map[5, 6] = map[9, 0] = map[0, 5] = map[2, 9] = map[5, 3] = "B";
-            map[5, 8] = map[9, 1] = map[0, 9] = map[2, 0] = map[5, 1] = "S";
-            updateMap();
-            //networkClient.Sender("UP#");
+            networkClient.Sender("UP#");
         }
 
         private void MoveLeftButton_Click(object sender, EventArgs e)
@@ -75,12 +74,7 @@ namespace Tanks_Client.UI
             networkClient.Sender("DOWN#");
         }
 
-        //UI processing methods
-        private void ProcessIncomingMessages(object sender, EventArgs e)
-        {
-            //MsgConsole.Text += e.ToString();
-        }
-
+        //UI updating methods
         private void drawMap()
         {
             int offsetX = 1, offsetY = 1;
@@ -109,7 +103,7 @@ namespace Tanks_Client.UI
             UIGraphics.Dispose();
         }
 
-        public void updateMap()
+        public void updateMap(object sender, EventArgs e)
         {
             int offsetX = 3, offsetY = 3;
             Graphics UIGraphics = tableLayoutPanel2.CreateGraphics();
@@ -119,22 +113,20 @@ namespace Tanks_Client.UI
             SolidBrush PaintStoneCell = new SolidBrush(Color.Gray);
             SolidBrush PaintBrickCell = new SolidBrush(Color.Maroon);
 
-            while (parser.getGameRunning())
-            {
                 map = parser.getMap();
                 for (int i = 0; i < 10; i++)
                 {
                     for (int j = 0; j < 10; j++)
                     {
-                        Brush b = null;
-                        if (map[i, j] == Constant.EMPTY) b = PaintEmptyCell;
+                        Brush b = PaintEmptyCell;
+                        //if (map[i, j] == Constant.EMPTY) b = PaintEmptyCell;
                         if (map[i, j] == Constant.WATER) b = PaintWaterCell;
                         if (map[i, j] == Constant.STONE) b = PaintStoneCell;
                         if (map[i, j] == Constant.BRICK) b = PaintBrickCell;
                         UIGraphics.FillRectangle(b, new Rectangle(i * 48 + offsetX, j * 48 + offsetY, 44, 44));
                     }
                 }
-            }
+            
             UIGraphics.Dispose();
         }
 
