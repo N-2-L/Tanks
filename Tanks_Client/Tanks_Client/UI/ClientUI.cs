@@ -16,7 +16,7 @@ namespace Tanks_Client.UI
         private ClientClass networkClient;
         private string[,] map;
         private Timer timer;
-        private string[,] mapHealth;
+        private string[,] mapDetails;
         private Label[,] mapLabels;
         private string[,] tableDetails;
         private Label[,] tableLabels;
@@ -32,12 +32,12 @@ namespace Tanks_Client.UI
                     map[i, j] = Constant.EMPTY;
             }
 
-            mapHealth = new string[Constant.MAP_SIZE, Constant.MAP_SIZE];
+            mapDetails = new string[Constant.MAP_SIZE, Constant.MAP_SIZE];
             mapLabels = new Label[Constant.MAP_SIZE, Constant.MAP_SIZE];
             for (int i = 0; i < Constant.MAP_SIZE; i++)
             {
                 for (int j = 0; j < Constant.MAP_SIZE; j++)
-                    mapLabels[i, j] = (Label)tableLayoutPanel2.GetControlFromPosition(i,j);
+                    mapLabels[i, j] = (Label)tableLayoutPanel2.GetControlFromPosition(i+1,j+1);
             }
             //initialize details table
             tableDetails = new string[5,5];
@@ -56,7 +56,11 @@ namespace Tanks_Client.UI
             //Adding a timer
             timer = new Timer();
             timer.Interval = 500;
-            timer.Tick += updateMap;//adding a listener
+
+            //adding listeners
+            timer.Tick += updateMap;
+            timer.Tick += updateLabels;
+            timer.Tick += updateCommConsole;
             timer.Start();
         }
 
@@ -68,31 +72,37 @@ namespace Tanks_Client.UI
         private void JoinGameButton_Click(object sender, EventArgs e)
         {
             networkClient.Sender("JOIN#");
+            MsgConsole.Text += "JOIN#\n";
         }
 
         private void MoveUpButton_Click(object sender, EventArgs e)
         {
             networkClient.Sender("UP#");
+            MsgConsole.Text += "UP#\n";
         }
 
         private void MoveLeftButton_Click(object sender, EventArgs e)
         {
             networkClient.Sender("LEFT#");
+            MsgConsole.Text += "LEFT#\n";
         }
 
         private void MoveRightButton_Click(object sender, EventArgs e)
         {
             networkClient.Sender("RIGHT#");
+            MsgConsole.Text += "RIGHT#\n";
         }
 
         private void ShootButton_Click(object sender, EventArgs e)
         {
             networkClient.Sender("SHOOT#");
+            MsgConsole.Text += "SHOOT#\n";
         }
 
         private void MoveDownButton_Click(object sender, EventArgs e)
         {
             networkClient.Sender("DOWN#");
+            MsgConsole.Text += "DOWN#\n";
         }
 
         //UI updating methods
@@ -171,7 +181,13 @@ namespace Tanks_Client.UI
 
         public void updateLabels(object sender, EventArgs e)
         {
+            //mapDetails = parser.get
+            //mapDetails = parser.get
+        }
 
+        public void updateCommConsole(object sender, EventArgs e)
+        {
+            MsgConsole.Text += parser.getMessage();
         }
 
         //UI processing methods end
