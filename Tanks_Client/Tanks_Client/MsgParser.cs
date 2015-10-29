@@ -173,6 +173,23 @@ namespace Tanks_Client
                     else if (playerName.Equals(Constant.PLAYER_3)) { p = 3; }
                     else if (playerName.Equals(Constant.PLAYER_4)) { p = 4; }
 
+                    if (direction.Equals("0"))
+                    {
+                        direction = "NORTH";
+                    }
+                    if (direction.Equals("1"))
+                    {
+                        direction = "EAST";
+                    }
+                    if (direction.Equals("2"))
+                    {
+                        direction = "SOUTH";
+                    }
+                    if (direction.Equals("3"))
+                    {
+                        direction = "WEST";
+                    }
+
                     playerDetails[p, 0] = direction;
                     
               
@@ -191,6 +208,7 @@ namespace Tanks_Client
                     String x = brickList[i].Split(',')[0];
                     String y = brickList[i].Split(',')[1];
                     map[Int32.Parse(x) , Int32.Parse(y)] = Constant.BRICK;
+                    mapHealth[Int32.Parse(x), Int32.Parse(y)] = "100%";
                 }
                 var stoneList = splitString[3].Split(';');
                 for (int i = 0; i < brickList.Length; i++)
@@ -243,6 +261,23 @@ namespace Tanks_Client
                     else if (playerName.Equals(Constant.PLAYER_2)) { p = 2; }
                     else if (playerName.Equals(Constant.PLAYER_3)) { p = 3; }
                     else if (playerName.Equals(Constant.PLAYER_4)) { p = 4; }
+
+                    if (direction.Equals("0"))
+                    {
+                        direction = "NORTH";
+                    }
+                    if (direction.Equals("1"))
+                    {
+                        direction = "EAST";
+                    }
+                    if (direction.Equals("2"))
+                    {
+                        direction = "SOUTH";
+                    }
+                    if (direction.Equals("3"))
+                    {
+                        direction = "WEST";
+                    }
 
                     playerDetails[p, 0] = direction;
                     playerDetails[p, 1] = shot;
