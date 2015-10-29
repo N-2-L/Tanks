@@ -318,6 +318,7 @@ namespace Tanks_Client
                     if (damageLevel.Equals("4"))
                     {
                         mapHealth[Int32.Parse(x), Int32.Parse(y)] = "0%";
+                        map[Int32.Parse(x), Int32.Parse(y)] = Constant.EMPTY;
                     }
                     
                 
