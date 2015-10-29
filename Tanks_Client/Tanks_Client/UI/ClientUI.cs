@@ -187,13 +187,20 @@ namespace Tanks_Client.UI
             for (int i = 0; i < Constant.MAP_SIZE; i++)
             {
                 for (int j = 0; j < Constant.MAP_SIZE; j++)
-                    mapLabels[i, j].Text = mapDetails[i,j];
+                    if (map[i, j] != Constant.BRICK && map[i, j] != Constant.COIN && !mapDetails[i, j].Equals(""))//remove this and check in parser
+                    {
+                        mapLabels[i, j].Text = "";
+                    }
+                    else
+                    {
+                        mapLabels[i, j].Text = mapDetails[i, j];
+                    }
             }
             //update table labels
             for (int i = 0; i < 5; i++)
             {
                 for (int j = 0; j < 5; j++)
-                    tableLabels[i, j].Text =tableDetails[i,j];
+                    tableLabels[i, j].Text =tableDetails[j,i];
             }
 
         }
