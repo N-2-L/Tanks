@@ -17,7 +17,7 @@ namespace Tanks_Client
         //will store details of the five players
         private string[,] playerDetails;
 
-        //will store details of the five players
+        //will store details of bricks and coins (damage levels and values of coins)
         private string[,] mapHealth;        
 
         private String message = "";
@@ -402,6 +402,10 @@ namespace Tanks_Client
         public String[,] getPlayerDetails()
         {
             return playerDetails;
+        }
+        public String[,] getMapHealth()
+        {
+            return mapHealth;
         }
     
     }
