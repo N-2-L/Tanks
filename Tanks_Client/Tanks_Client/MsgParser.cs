@@ -157,9 +157,9 @@ namespace Tanks_Client
             //specifies details of the player at the beginning
             if (identifier.Equals("S")) {
 
-                for (int i = 0; i <= (splitString.Length-1)/4; i++)
+                for (int i = 1; i <= (splitString.Length-1); i++)
                 {
-                    var players = splitString[1].Split(';');
+                    var players = splitString[i].Split(';');
                     String playerName = players[0];
                     String x = players[1].Split(',')[0];
                     String y = players[1].Split(',')[1];
