@@ -264,7 +264,27 @@ namespace Tanks_Client
                     String x = damageBrick[0];
                     String y = damageBrick[1];
                     String damageLevel = damageBrick[2];
-                    mapHealth[Int32.Parse(x), Int32.Parse(y)] = damageLevel;
+                    if (damageLevel.Equals("0"))
+                    {
+                        mapHealth[Int32.Parse(x), Int32.Parse(y)] = "100%";
+                    }
+                    if (damageLevel.Equals("1"))
+                    {
+                        mapHealth[Int32.Parse(x), Int32.Parse(y)] = "75%";
+                    }
+                    if (damageLevel.Equals("2"))
+                    {
+                        mapHealth[Int32.Parse(x), Int32.Parse(y)] = "50%";
+                    }
+                    if (damageLevel.Equals("3"))
+                    {
+                        mapHealth[Int32.Parse(x), Int32.Parse(y)] = "25%";
+                    }
+                    if (damageLevel.Equals("4"))
+                    {
+                        mapHealth[Int32.Parse(x), Int32.Parse(y)] = "0%";
+                    }
+                    
                 
                 }
 
