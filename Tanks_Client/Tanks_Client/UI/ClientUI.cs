@@ -37,7 +37,7 @@ namespace Tanks_Client.UI
             for (int i = 0; i < Constant.MAP_SIZE; i++)
             {
                 for (int j = 0; j < Constant.MAP_SIZE; j++)
-                    mapLabels[i, j] = (Label)tableLayoutPanel2.GetControlFromPosition(i+1,j+1);
+                    mapLabels[i, j] = (Label)tableLayoutPanel2.GetControlFromPosition(i,j);
             }
             //initialize details table
             tableDetails = new string[5,5];
@@ -45,7 +45,7 @@ namespace Tanks_Client.UI
             for (int i = 0; i < 5; i++)
             {
                 for (int j = 0; j < 5; j++)
-                    tableLabels[i, j] = (Label)tableLayoutPanel1.GetControlFromPosition(i, j);
+                    tableLabels[i, j] = (Label)tableLayoutPanel1.GetControlFromPosition(i+1, j+1);
             }
 
             //instantiate message passer
@@ -55,7 +55,7 @@ namespace Tanks_Client.UI
             
             //Adding a timer
             timer = new Timer();
-            timer.Interval = 500;
+            timer.Interval = 100;
 
             //adding listeners
             timer.Tick += updateMap;
@@ -181,8 +181,21 @@ namespace Tanks_Client.UI
 
         public void updateLabels(object sender, EventArgs e)
         {
-            //mapDetails = parser.get
-            //mapDetails = parser.get
+            mapDetails = parser.getMapHealth();
+            tableDetails = parser.getPlayerDetails();
+            //update map labels
+            for (int i = 0; i < Constant.MAP_SIZE; i++)
+            {
+                for (int j = 0; j < Constant.MAP_SIZE; j++)
+                    mapLabels[i, j].Text = mapDetails[i,j];
+            }
+            //update table labels
+            for (int i = 0; i < 5; i++)
+            {
+                for (int j = 0; j < 5; j++)
+                    tableLabels[i, j].Text =tableDetails[i,j];
+            }
+
         }
 
         public void updateCommConsole(object sender, EventArgs e)
