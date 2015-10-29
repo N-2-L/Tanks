@@ -214,6 +214,18 @@ namespace Tanks_Client
             {
                 //get gameplay details
                 //get details of players
+
+                for (int k = 0; k < Constant.MAP_SIZE; k++)
+                {
+                    for (int j = 0; j < Constant.MAP_SIZE; j++)
+                    {
+                        if (!(map[k, j] == Constant.WATER || map[k, j] == Constant.STONE || map[k, j] == Constant.BRICK || map[k, j] == Constant.LEFT || map[k, j] == Constant.COIN /*|| map[k, j] == Constant.PLAYER_0 || map[k, j] == Constant.PLAYER_1 || map[k, j] == Constant.PLAYER_2 || map[k, j] == Constant.PLAYER_3 || map[k, j] == Constant.PLAYER_4*/))
+                        {
+                            map[k, j] = Constant.EMPTY;
+                        }
+                    }
+
+                }
                 for (int i = 0; i < splitString.Length - 2; i++) {
                     var playerSplit = splitString[i + 1].Split(';');
                     String playerName = playerSplit[0];
@@ -239,20 +251,12 @@ namespace Tanks_Client
                     playerDetails[p, 4] = points;
                     
                     
-                    for (int k = 0; k < Constant.MAP_SIZE; k++)
-                    {
-                        for (int j = 0; j < Constant.MAP_SIZE; j++)
-                        {
-                            if (!(map[k, j] == Constant.WATER || map[k, j] == Constant.STONE || map[k, j] == Constant.BRICK || map[k, j] == Constant.LEFT || map[k, j] == Constant.COIN))
-                            {
-                                map[k, j] = Constant.EMPTY;
-                            }
-                        }
-                            
-                    }
+                    
                     map[Int32.Parse(x), Int32.Parse(y)] = playerName;
 
                 }
+
+
                 var brickList = splitString[splitString.Length-1].Split(';');
                 for (int i = 0; i < brickList.Length - 2; i++)
                 {
