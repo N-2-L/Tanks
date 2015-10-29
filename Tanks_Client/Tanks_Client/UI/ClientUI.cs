@@ -16,6 +16,10 @@ namespace Tanks_Client.UI
         private ClientClass networkClient;
         private string[,] map;
         private Timer timer;
+        private string[,] mapHealth;
+        private Label[,] mapLabels;
+        private string[,] tableDetails;
+        private Label[,] tableLabels;
         public ClientUI()
         {
             InitializeComponent();
@@ -27,6 +31,23 @@ namespace Tanks_Client.UI
                 for (int j = 0; j < Constant.MAP_SIZE; j++)
                     map[i, j] = Constant.EMPTY;
             }
+
+            mapHealth = new string[Constant.MAP_SIZE, Constant.MAP_SIZE];
+            mapLabels = new Label[Constant.MAP_SIZE, Constant.MAP_SIZE];
+            for (int i = 0; i < Constant.MAP_SIZE; i++)
+            {
+                for (int j = 0; j < Constant.MAP_SIZE; j++)
+                    mapLabels[i, j] = (Label)tableLayoutPanel2.GetControlFromPosition(i,j);
+            }
+            //initialize details table
+            tableDetails = new string[5,5];
+            tableLabels = new Label[5,5];
+            for (int i = 0; i < 5; i++)
+            {
+                for (int j = 0; j < 5; j++)
+                    tableLabels[i, j] = (Label)tableLayoutPanel1.GetControlFromPosition(i, j);
+            }
+
             //instantiate message passer
             parser = new MsgParser();
             //instantiate network client
@@ -146,6 +167,11 @@ namespace Tanks_Client.UI
                 }
             }
             UIGraphics.Dispose();
+        }
+
+        public void updateLabels(object sender, EventArgs e)
+        {
+
         }
 
         //UI processing methods end
