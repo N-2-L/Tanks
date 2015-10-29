@@ -17,6 +17,9 @@ namespace Tanks_Client
         //will store details of the five players
         private string[,] playerDetails;
 
+        //will store details of bricks and coins (damage levels and values of coins)
+        private string[,] mapHealth;        
+
         private String message = "";
         //make this singleton if necessary
         //create object of ClientClass
@@ -46,7 +49,13 @@ namespace Tanks_Client
             for (int i = 0; i < 5; i++)
             {
                 for (int j = 0; j < 5; j++)
-                    map[i, j] = Constant.EMPTY;
+                    playerDetails[i, j] = "-";
+            }
+            mapHealth = new string[Constant.MAP_SIZE, Constant.MAP_SIZE];
+            for (int i = 0; i < Constant.MAP_SIZE; i++)
+            {
+                for (int j = 0; j < Constant.MAP_SIZE; j++)
+                    mapHealth[i, j] = "";
             }
         }
 
@@ -62,7 +71,7 @@ namespace Tanks_Client
                     var splitString = msg.Split(':');
 
                     //this will update message with time - to be printed on GUI
-                    message = msg + "\n" + time;
+                    message = time + " : " + msg + "\n";
 
                     if (splitString.Length == 0)
                     {
@@ -150,12 +159,22 @@ namespace Tanks_Client
 
                 for (int i = 0; i <= (splitString.Length-1)/4; i++)
                 {
-                    var playerDetails = splitString[1].Split(';');
-                    String playerName = playerDetails[0];
-                    String x = playerDetails[1].Split(',')[0];
-                    String y = playerDetails[1].Split(',')[1];
-                    String direction = playerDetails[2];
+                    var players = splitString[1].Split(';');
+                    String playerName = players[0];
+                    String x = players[1].Split(',')[0];
+                    String y = players[1].Split(',')[1];
+                    String direction = players[2];
                     map[Int32.Parse(x), Int32.Parse(y)] = playerName;
+
+                    int p = 0;
+                    if (playerName.Equals(Constant.PLAYER_0)) { p = 0; }
+                    else if (playerName.Equals(Constant.PLAYER_1)) { p = 1; }
+                    else if (playerName.Equals(Constant.PLAYER_2)) { p = 2; }
+                    else if (playerName.Equals(Constant.PLAYER_3)) { p = 3; }
+                    else if (playerName.Equals(Constant.PLAYER_4)) { p = 4; }
+
+                    playerDetails[p, 0] = direction;
+                    
               
                 }
                          
@@ -205,6 +224,21 @@ namespace Tanks_Client
                     String health = playerSplit[4];
                     String coin = playerSplit[5];
                     String points = playerSplit[6];
+
+                    int p = 0;
+                    if (playerName.Equals(Constant.PLAYER_0)) { p = 0; }
+                    else if (playerName.Equals(Constant.PLAYER_1)) { p = 1; }
+                    else if (playerName.Equals(Constant.PLAYER_2)) { p = 2; }
+                    else if (playerName.Equals(Constant.PLAYER_3)) { p = 3; }
+                    else if (playerName.Equals(Constant.PLAYER_4)) { p = 4; }
+
+                    playerDetails[p, 0] = direction;
+                    playerDetails[p, 1] = shot;
+                    playerDetails[p, 2] = health;
+                    playerDetails[p, 3] = coin;
+                    playerDetails[p, 4] = points;
+                    
+                    
                     for (int k = 0; k < Constant.MAP_SIZE; k++)
                     {
                         for (int j = 0; j < Constant.MAP_SIZE; j++)
@@ -226,6 +260,7 @@ namespace Tanks_Client
                     String x = damageBrick[0];
                     String y = damageBrick[1];
                     String damageLevel = damageBrick[2];
+                    mapHealth[Int32.Parse(x), Int32.Parse(y)] = damageLevel;
                 
                 }
 
@@ -239,6 +274,7 @@ namespace Tanks_Client
                 String time = splitString[2];
                 String value = splitString[3];
                 map[Int32.Parse(x), Int32.Parse(y)] = Constant.COIN;
+                mapHealth[Int32.Parse(x), Int32.Parse(y)] = value;
 
 
             }
@@ -362,6 +398,14 @@ namespace Tanks_Client
         }
         public String getMessage() {
             return message;
+        }
+        public String[,] getPlayerDetails()
+        {
+            return playerDetails;
+        }
+        public String[,] getMapHealth()
+        {
+            return mapHealth;
         }
     
     }
