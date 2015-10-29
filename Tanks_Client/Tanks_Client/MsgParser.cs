@@ -14,6 +14,9 @@ namespace Tanks_Client
         //will store locations sent by each msg
         private string[,] map;
 
+        //will store details of the five players
+        private string[,] playerDetails;
+
         private String message = "";
         //make this singleton if necessary
         //create object of ClientClass
@@ -37,6 +40,12 @@ namespace Tanks_Client
             for (int i = 0; i < Constant.MAP_SIZE; i++)
             {
                 for (int j = 0; j < Constant.MAP_SIZE; j++)
+                    map[i, j] = Constant.EMPTY;
+            }
+            playerDetails = new string[5, 5];
+            for (int i = 0; i < 5; i++)
+            {
+                for (int j = 0; j < 5; j++)
                     map[i, j] = Constant.EMPTY;
             }
         }
@@ -160,22 +169,22 @@ namespace Tanks_Client
 
                 var brickList = splitString[2].Split(';');
                 for (int i = 0; i < brickList.Length; i++) {
-                    String x = brickList[0].Split(',')[0];
-                    String y = brickList[0].Split(',')[1];
+                    String x = brickList[i].Split(',')[0];
+                    String y = brickList[i].Split(',')[1];
                     map[Int32.Parse(x) , Int32.Parse(y)] = Constant.BRICK;
                 }
                 var stoneList = splitString[3].Split(';');
                 for (int i = 0; i < brickList.Length; i++)
                 {
-                    String x = stoneList[0].Split(',')[0];
-                    String y = stoneList[0].Split(',')[1];
+                    String x = stoneList[i].Split(',')[0];
+                    String y = stoneList[i].Split(',')[1];
                     map[Int32.Parse(x), Int32.Parse(y)] = Constant.STONE;
                 }
                 var waterList = splitString[4].Split(';');
                 for (int i = 0; i < waterList.Length; i++)
                 {
-                    String x = waterList[0].Split(',')[0];
-                    String y = waterList[0].Split(',')[1];
+                    String x = waterList[i].Split(',')[0];
+                    String y = waterList[i].Split(',')[1];
                     map[Int32.Parse(x), Int32.Parse(y)] = Constant.WATER;
                 }
 
@@ -196,6 +205,17 @@ namespace Tanks_Client
                     String health = playerSplit[4];
                     String coin = playerSplit[5];
                     String points = playerSplit[6];
+                    for (int k = 0; k < Constant.MAP_SIZE; k++)
+                    {
+                        for (int j = 0; j < Constant.MAP_SIZE; j++)
+                        {
+                            if (!(map[k, j] == Constant.WATER || map[k, j] == Constant.STONE || map[k, j] == Constant.BRICK || map[k, j] == Constant.LEFT || map[k, j] == Constant.COIN))
+                            {
+                                map[k, j] = Constant.EMPTY;
+                            }
+                        }
+                            
+                    }
                     map[Int32.Parse(x), Int32.Parse(y)] = playerName;
 
                 }
