@@ -71,7 +71,7 @@ namespace Tanks_Client
                     var splitString = msg.Split(':');
 
                     //this will update message with time - to be printed on GUI
-                    message = msg + "\n" + time;
+                    message = time + " : " + msg + "\n";
 
                     if (splitString.Length == 0)
                     {
